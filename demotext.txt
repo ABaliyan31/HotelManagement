@@ -1,6 +1,1 @@
 this is just a demo file to understand git
-*
-*
-*
-*
-*
