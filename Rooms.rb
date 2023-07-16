@@ -6,7 +6,7 @@ class Room
     @ac = ac
     @BedType = bedtype
     @Balcony = balcony
-    @cost = 700 + (500*ac.to_i) + (200*bedtype.to_i) + (400*balcony.to_i)
+    @cost = 700 + (500*ac.to_i) + (300*bedtype.to_i) + (500*balcony.to_i)
     @occupied = 0
   end
 end
