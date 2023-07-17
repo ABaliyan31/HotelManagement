@@ -21,7 +21,7 @@ def displayRooms
      end
      if $availableRooms.empty?
        puts "no rooms available"
-       hotelBooking
+       displayRooms
      else
       selectingRoom
      end
@@ -32,7 +32,7 @@ def selectingRoom
   puts "enter zero to go to main menu"
   inputUser = gets.to_i
   if inputUser == 0
-    hotelBooking()
+    displayRooms
   end
   f = 0
   $availableRooms.each do |i|
