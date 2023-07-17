@@ -1,7 +1,7 @@
 # require_relative './Booking.rb'
 
 require_relative './DashBoard.rb'
-
+require_relative ("./Booking.rb")
 
 class User
 
@@ -21,8 +21,8 @@ class User
 
         # book = Booking.new
         # room = book.createBooking()
-
-        room = displayRooms
+        booking = Booking.new()
+        room = booking.createBooking(@phone)
 
         File.open("./residents.txt","a") do |file|
         file.write("#{@phone}   #{room.name}\n")
