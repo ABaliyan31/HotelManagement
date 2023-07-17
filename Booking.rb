@@ -1,53 +1,49 @@
 require_relative ("./Dashboard.rb")
 require 'date'
 require 'csv'
-#require 'file'
-
-
- # start of booking class
 
  class  Booking
 
     @@headers = ["Phone_Number", "Start_Date", "End_Date", "Gym_Opted", "Laundry_opted", "food_opted", "Amount"]
-    def createBooking(phone_No)
+    def create_booking(phone_No)
 
         details = []
         details << phone_No
-        room = displayRooms
+        room = display_rooms
         amount = room.cost
       while true
 
         while true
-         puts "Enter Start Date"
-         startDate = gets.chomp
+         puts "Enter Start Date  in format yyyy-mm-dd"
+         start_date = gets.chomp
 
-         y, m, d = startDate.split '-'
+         y, m, d = start_date.split '-'
          if Date.valid_date? y.to_i, m.to_i, d.to_i
             break
          else
-            puts "Enter Correct Start Date"
+            puts "Enter Correct Start Date in format yyyy-mm-dd"
          end
         end
 
         while true
-         puts "Enter End Date"
-         endDate = gets.chomp
+         puts "Enter End Date  in format yyyy-mm-dd"
+         end_date = gets.chomp
 
-         y, m, d = endDate.split '-'
+         y, m, d = end_date.split '-'
          if Date.valid_date? y.to_i, m.to_i, d.to_i
             break
          else
-            puts "Enter Correct End Date"
+            puts "Enter Correct End Date in format yyyy-mm-dd"
          end
         end
 
-        if Date.parse(startDate) > Date.parse(endDate)
+        if Date.parse(start_date) > Date.parse(end_date)
             puts "Please enter correct Dates"
         else
-            difference_in_days = (Date.parse(endDate) - Date.parse(startDate)).to_i
+            difference_in_days = (Date.parse(end_date) - Date.parse(start_date)).to_i
             amount = difference_in_days*amount
-            details << startDate
-            details << endDate
+            details << start_date
+            details << end_date
             break
         end
     end
@@ -63,7 +59,7 @@ require 'csv'
             gym_opted = "Yes"
             break
         elsif input == 'N' || input == 'n'
-            breaks
+            break
         else puts "choose correct options !!"
         end
         end
