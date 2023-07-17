@@ -1,30 +1,5 @@
 $availableRooms = []
-class DB
-   def UserDashBoard
-    while true
-      puts "press 1 for checkout"
-      puts "press 2 for checkin"
-      input = gets.to_i
-       if input == 1
-          puts "welcome to checkout"
-          #take user phone number to search if it has booking
-          # if user doesnot have booking than below line will run:
-          #self.UserDashBoard       just uncomment it later.
-          #if user does have booking impelement the checkout function.
-          #checkout function will come here , make sure to make occupied to zero when checking out. and uncomment the below line.
-          #self.UserDashBoard
-       elsif input == 2
-        puts "welcome to checkin"
-        displayRooms
-        break
-       else
-         puts "wrong option enter again"
 
-       end
-    end
-
-   end
-end
 
 def displayRooms
     choices = []
