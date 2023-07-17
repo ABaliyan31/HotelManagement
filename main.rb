@@ -2,14 +2,15 @@ require "csv"
 
 $residents = {}
 require "./User.rb"
-CSV.open("./residents.txt", "r",{:col_sep => '\t'}).each do |row|
+CSV.open("./residents.csv", "r",{:col_sep => '\t'}).each do |row|
+    break if row.empty?
     user,room = row[0].split.map(&:to_i)
-    $residents[user] = $allRooms[room]
-    $allRooms[room].occupied = 1
+    $residents[user] = $all_rooms[room]
+    $all_rooms[room].occupied = 1
 end
 
 class Hotel
-def hotelBooking
+def hotel_booking
     puts "Enter Phone Number : "
     phone = gets.chomp().to_i
     user = User.new(phone)
@@ -20,7 +21,7 @@ def hotelBooking
             op = gets.chomp()
             if op=='Y' or op=='y'
     # ? pass by reference availablRooms, bookedRooms, residents
-                user.checkOut()
+                user.check_out()
                 break
             elsif op=='N' or op=='n'
                 break
@@ -34,7 +35,7 @@ def hotelBooking
             op = gets.chomp()
             if op=='Y' or op=='y'
     # ? pass by reference availableRooms, bookedRooms, residents
-                user.checkIn()
+                user.check_in()
                 break
             elsif op=='N' or op=='n'
                 break
@@ -48,7 +49,7 @@ end
 
 
 hotel = Hotel.new()
-hotel.hotelBooking()
+hotel.hotel_booking()
 
 
 

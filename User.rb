@@ -1,6 +1,4 @@
-# require_relative './Booking.rb'
 
-require_relative './DashBoard.rb'
 require_relative ("./Booking.rb")
 
 class User
@@ -9,34 +7,34 @@ class User
         @name = ""
         @phone = phone
         @address = ""
-        puts 'phone created'
     end
 
-    def checkIn
+    def check_in
 
         puts "Enter your name "
         @name = gets.chomp()
         puts "Enter address"
         @address = gets.chomp()
 
-        # book = Booking.new
-        # room = book.createBooking()
         booking = Booking.new()
-        room = booking.createBooking(@phone)
+        room = booking.create_booking(@phone)
 
-        File.open("./residents.txt","a") do |file|
-        file.write("#{@phone}   #{room.name}\n")
+        File.open("./users.csv","a") do |file|
+          file.write("#@phone\t#@name\t#@address\n")
+        end
+
+        File.open("./residents.csv","a") do |file|
+          file.write("#{@phone}   #{room.name}\n")
         end
         $residents[@phone] = room
 
     end
 
-    def checkOut
+    def check_out
         $residents[@phone].occupied = 0
         $residents.delete(@phone)
         # need optimization
-        File.delete("./residents.txt")
-        File.open("./residents.txt","a") do |file|
+        File.open("./residents.csv","a") do |file|
             $residents.each do |phone,room|
                 file.write("#{phone}\t#{room.name}\n")
             end
