@@ -1,5 +1,5 @@
 $availableRooms = []
-
+require_relative('./Rooms.rb')
 
 def displayRooms
     choices = []
@@ -21,31 +21,26 @@ def displayRooms
      end
      if $availableRooms.empty?()
        puts "no rooms available"
-       o = DB.new()
-       o.UserDashBoard
+       hotelBooking()
      else
       selectingRoom
      end
 end
+
 def selectingRoom
   puts "enter roomNumber you want to select"
   puts "enter zero to go to main menu"
   inputUser = gets.to_i
   if inputUser == 0
-    o = DB.new()
-    o.UserDashBoard
+    hotelBooking()
   end
   f = 0
   $availableRooms.each do |i|
     if i.instance_variable_get(:@name) == inputUser
        i.instance_variable_set(:@occupied, 1)
        f = 1
-       cost = i.instance_variable_get(:@cost) #perday cost
-       #payment and checkin functions will come here and user details will also be asked here.
-       #take startdate and enddate also when crearting booking whike checkin
-       puts "thanks for booking"
-       o = DB.new()
-       o.UserDashBoard
+       cost = i.instance_variable_get(:@cost) 
+       return i
     end
   end
   if f == 0
@@ -54,10 +49,5 @@ def selectingRoom
   end
 
 end
-
-
-
-
-
 
 
