@@ -9,16 +9,17 @@ class User
         @name = ""
         @phone = phone
         @address = ""
-    end 
+        puts 'phone created'
+    end
 
     def checkIn
-        
+
         puts "Enter your name "
         @name = gets.chomp()
         puts "Enter address"
         @address = gets.chomp()
 
-        # book = Booking.new 
+        # book = Booking.new
         # room = book.createBooking()
 
         room = displayRooms
@@ -26,13 +27,13 @@ class User
         File.open("./residents.txt","a") do |file|
         file.write("#{@phone}   #{room.name}\n")
         end
-        $residents[@phone] = room 
+        $residents[@phone] = room
 
     end
 
     def checkOut
         $residents[@phone].occupied = 0
-        $residents.delete(@phone) 
+        $residents.delete(@phone)
         # need optimization
         File.delete("./residents.txt")
         File.open("./residents.txt","a") do |file|
@@ -43,7 +44,7 @@ class User
     end
 
 
-end 
+end
 
 
 

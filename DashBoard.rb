@@ -19,9 +19,9 @@ def displayRooms
          $availableRooms << i
        end
      end
-     if $availableRooms.empty?()
+     if $availableRooms.empty?
        puts "no rooms available"
-       hotelBooking()
+       displayRooms
      else
       selectingRoom
      end
@@ -32,14 +32,14 @@ def selectingRoom
   puts "enter zero to go to main menu"
   inputUser = gets.to_i
   if inputUser == 0
-    hotelBooking()
+    displayRooms
   end
   f = 0
   $availableRooms.each do |i|
     if i.instance_variable_get(:@name) == inputUser
        i.instance_variable_set(:@occupied, 1)
        f = 1
-       cost = i.instance_variable_get(:@cost) 
+       cost = i.instance_variable_get(:@cost)
        return i
     end
   end

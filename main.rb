@@ -1,20 +1,20 @@
 require "csv"
 
 $residents = {}
-require_relative("./User.rb")
+require "./User.rb"
 CSV.open("./residents.txt", "r",{:col_sep => '\t'}).each do |row|
     user,room = row[0].split.map(&:to_i)
     $residents[user] = $allRooms[room]
     $allRooms[room].occupied = 1
-end 
+end
 
-
+class Hotel
 def hotelBooking
     puts "Enter Phone Number : "
-    phone = gets.chomp().to_i 
+    phone = gets.chomp().to_i
     user = User.new(phone)
 
-    if $residents.include?phone 
+    if $residents.include?phone
         puts "Would you like to Check Out ? Y/N"
         while true
             op = gets.chomp()
@@ -43,12 +43,12 @@ def hotelBooking
             end
         end
     end
-end 
+end
+end
 
 
-
-
-hotelBooking()
+hotel = Hotel.new()
+hotel.hotelBooking()
 
 
 
